@@ -5,10 +5,13 @@ import matplotlib.pyplot as plt
 
 
 
+variables = {
+    'x': [],
+    'y': []
+}
 
 X=[]
 Y=[]
-
 
 def basic_line(file,lines):
     X = []
@@ -28,7 +31,7 @@ def basic_line(file,lines):
 
 
 
-    plt.plot(X,Y, label='Loaded from file!')
+    plt.plot(X, Y, label='Loaded from file!')
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
@@ -42,10 +45,10 @@ def basic_bar(file):
     with open(file, 'r') as csvfile:
         Plotting = csv.reader(csvfile, delimiter=',')
         for row in Plotting:
-            X.append(int(row[0]))
-            Y.append(int(row[1]))
+            variables['x'].append(int(row[0]))
+            variables['y'].append(int(row[1]))
 
-    plt.bar(X,Y, label='Bars1')
+    plt.bar(variables['x'], variables['y'], label='Bars1')
 
     plt.xlabel('X')
     plt.ylabel('y')
@@ -58,9 +61,9 @@ def basic_scatter(file):
     with open(file, 'r') as csvfile:
         Plotting = csv.reader(csvfile, delimiter=',')
         for row in Plotting:
-            X.append(int(row[0]))
-            Y.append(int(row[1]))
-    plt.scatter(X,Y, label='Scatter', color='b')
+            variables['x'].append(int(row[0]))
+            variables['y'].append(int(row[1]))
+    plt.scatter(variables['x'], variables['y'], label='Scatter', color='b')
 
     plt.xlabel('X')
     plt.ylabel('y')
