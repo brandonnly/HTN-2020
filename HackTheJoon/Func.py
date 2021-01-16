@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
 variables = {
     'x': [],
     'y': []
@@ -13,33 +12,28 @@ variables = {
 X=[]
 Y=[]
 
-def basic_line(file,lines):
-    X = []
-    Y = []
-    for i in range(lines):
+def basic_line(file):
+    linesNum = int(input("How many lines?"))
+    x = []
+    y = {
 
+    }
+    for num in range(linesNum):
+        y[num+1] = []
+    for i in range(linesNum):
         with open(file, 'r') as csvfile:
             Plotting = csv.reader(csvfile, delimiter=',')
-
             for row in Plotting:
-                for i in range(len(row)):
-                    if i==0:
-                        X.append(int(row[i]))
-                    if i%2 == 1:
-                        Y.append(int(row[i]))
+                x.append(row[0])
+                for j in range(1, len(row)):
+                    y[j].append(row[j])
+    for k in range(linesNum):
+        plt.plot(x, y[k+1])
 
-
-
-
-    plt.plot(X, Y, label='Loaded from file!')
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
     plt.show()
-
-    # plt.savefig('LineGraph.png')
-
-
 
 def basic_bar(file):
     with open(file, 'r') as csvfile:
@@ -83,8 +77,7 @@ type = input("What type of graph, line, scatter or bar? ")
 File = input("Input exact name with file type extension located within folder: ")
 
 if type == "line":
-    linesNum = int(input("How many lines?"))
-    basic_line(File,linesNum)
+    basic_line(File)
 
 if type == "scatter":
     basic_scatter(File)
