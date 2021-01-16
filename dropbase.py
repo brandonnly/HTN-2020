@@ -14,7 +14,7 @@ class Job:
         Get presigned url for uploading file to dropbase
         :return:
         """
-        data = {"token": "gpri9HrjnoWR7peSoK9ghc"}
+        data = {"token": "HNRLmKPeu5QcoWJF2phDwb"}
         processing = requests.post(
             "https://api2.dropbase.io/v1/pipeline/generate_presigned_url",
             data=data)
