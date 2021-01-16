@@ -28,6 +28,7 @@ def basic_line(file):
                 for j in range(1, len(row)):
                     y[j].append(row[j])
     for k in range(linesNum):
+        # uses from object
         plt.plot(x, y[k+1])
 
     plt.xlabel('X')
