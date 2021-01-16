@@ -2,6 +2,7 @@ import asyncio
 import os
 import discord
 from discord.ext import commands
+from dropbase import *
 
 from settings import *
 
@@ -39,6 +40,8 @@ async def graph(ctx):
     else:
         # saves with filename
         await msg.attachments[0].save("file.csv")
+
+    run_pipeline()
 
 
 bot.run(os.getenv('BOT_TOKEN'))
