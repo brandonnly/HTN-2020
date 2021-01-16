@@ -53,8 +53,8 @@ def basic_bar(file):
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    # plt.show()
-    plt.savefig('BarGraph.png')
+    plt.show()
+    # plt.savefig('BarGraph.png')
 
 
 def basic_scatter(file):
@@ -68,8 +68,9 @@ def basic_scatter(file):
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    # plt.show()
-    plt.savefig('Scatter.png')
+    plt.show()
+    # Save image
+    # plt.savefig('Scatter.png')
 
     # basic_scatter('example.csv')
 # basic_bar('example.csv')
