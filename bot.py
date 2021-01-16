@@ -41,7 +41,5 @@ async def graph(ctx):
         # saves with filename
         await msg.attachments[0].save("file.csv")
 
-    run_pipeline()
-
 
 bot.run(os.getenv('BOT_TOKEN'))

@@ -1,5 +1,5 @@
 import time
-
+import os
 import requests
 
 
@@ -14,7 +14,7 @@ class Job:
         Get presigned url for uploading file to dropbase
         :return:
         """
-        data = {"token": "HNRLmKPeu5QcoWJF2phDwb"}
+        data = {"token": os.getenv("DROPBASE_API_KEY")}
         processing = requests.post(
             "https://api2.dropbase.io/v1/pipeline/generate_presigned_url",
             data=data)
