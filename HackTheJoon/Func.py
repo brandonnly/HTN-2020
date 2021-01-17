@@ -78,11 +78,19 @@ def geo(file):
     # geoplotlib.show()
     geoplotlib.savefig('img/map')
 
-def geo(file):      # file must have at top: name,lat,lon
+def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
     # geoplotlib.show()
     geoplotlib.savefig('img/map')
+
+
+def geo_spatial(file):
+    data = read_csv(file)
+    geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
+                     dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
+    geoplotlib.show()
+#     geoplotlib.savefig('img/spatial')
 
 
 type = input("What type of graph, geo, line, scatter or bar? ")
@@ -102,8 +110,12 @@ if type == "bar":
     basic_bar(File)
 
 if type == "geo":
-    geo(File)
+    geotype = input("What type? Dot Density? Spatial?")
+    if geotype=="dot":
+        geo_dot(File)
 
+    if geotype=="spatial":
+        geo_spatial(File)
     # Make sure to auto delete the image after the command in bot.py
 
 if type == "geo":
