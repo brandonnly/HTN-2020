@@ -24,6 +24,7 @@ def basic_line(file):
 
     with open(file, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
+        # Skip first line
         next(plots)
         for row in plots:
             for j in range(1, len(row)):
