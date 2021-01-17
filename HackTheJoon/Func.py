@@ -80,13 +80,22 @@ def basic_scatter(file):
 
 
 def basic_pie(file):
-    df=pd.read_csv(file)
-    label_data = df[0]
-    value_data = df[1]
+    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
+    vals = {}
+    arr = []
+    with open(file, 'r') as csvfile:
+        Plotting = csv.reader(csvfile, delimiter=',')
+        firstLine = next(Plotting)
+        arr = firstLine
+        vals[firstLine[0]] = []
+        vals[firstLine[1]] = []
+        for row in Plotting:
+            vals[firstLine[0]].append((row[0]))
+            vals[firstLine[1]].append((row[1]))
     colors = ['m', 'b', 'k' , 'c', 'r']
-
-    plt.pie(value_data, labels=label_data, colors=colors, startangle=90)
-    plt.title(file)
+    print(vals[arr[0]])
+    plt.pie(vals[arr[1]], labels=vals[arr[0]], colors=colors, startangle=90)
+    plt.title(file.split('.')[0])
     plt.show()
 
 
@@ -129,3 +138,5 @@ if type == "geo":
         basic_pie(File)
 
 """
+
+basic_pie('Gold.csv')
