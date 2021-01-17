@@ -73,6 +73,16 @@ async def graph(ctx, graph_type):
                 json.dump(database_query('geodot', 'name,lat,lon'),
                           outfile, ensure_ascii=False, indent=4)
 
+        elif graph_type.lower() == 'geospatial':
+            job = Job('GEOSPATIAL TABLE')
+            job.run_pipeline()
+            time.sleep(5)
+
+            # saves query as temp json
+            with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+                json.dump(database_query('geospatial', 'lon_departure,lat_departure,lon_arrival,lat_arrival'),
+                          outfile, ensure_ascii=False, indent=4)
+
         # converts json to csv
         file = pandas.read_json('temp/file.json')
         file.to_csv('temp/new_file.csv', index=False)
@@ -102,6 +112,11 @@ async def graph(ctx, graph_type):
         geo_dot('temp/new_file.csv')
         await ctx.send(
             file=discord.File(open('temp/map.png', 'rb'), 'map.png'))
+
+    elif graph_type.lower() == 'geospatial':
+        geo_spatial('temp/new_file.csv')
+        await ctx.send(
+            file=discord.File(open('temp/spatial.png', 'rb'), 'spatial.png'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))
