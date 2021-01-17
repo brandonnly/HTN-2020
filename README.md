@@ -1,11 +1,21 @@
 # DisGraph (HTN 2020++ Submission)
+
+- [DisGraph (HTN 2020++ Submission)](#disgraph-htn-2020-submission)
+  - [About the Project](#about-the-project)
+  - [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+  - [Usage](#usage)
+      - [Graph Types](#graph-types)
+  - [License](#license)
+  - [HTN 2020++ Group](#htn-2020-group)
 ## About the Project
 Wanting to explore a unique way to share CSV/Excel data through the 
 [Dropbase](https://dropbase.io) API, we thought about the platform through 
 which we were all communicating on. Discord. So we decided to create `DisGraph`
 , a Discord bot that can read in your data from a `.csv` and return a graph.
 
-[![img/example.png](img/example.png)]
+<img align="center" src="img/example.png" alt="Example image with Geo Spatial Graph">
 
 ## Getting Started
 At the moment the bot doesn't have a public link as it isn't hosted 24/7. But,
