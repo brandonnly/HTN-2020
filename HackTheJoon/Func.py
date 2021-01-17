@@ -13,8 +13,7 @@ X=[]
 Y=[]
 
 def basic_line(file):
-    # linesNum = int(input("How many lines?"))
-    linesNum = 2
+    linesNum = int(input("How many lines?"))
     var = {
     }
     for i in range(1, linesNum+1):
@@ -65,19 +64,12 @@ def basic_scatter(file):
     plt.ylabel('y')
     plt.legend()
     plt.show()
-    # Save image
-    # plt.savefig('Scatter.png')
-
-    # basic_scatter('example.csv')
-# basic_bar('example.csv')
-# basic_line('example.csv')
 
 
 
 type = input("What type of graph, line, scatter or bar? ")
 
-# File = input("Input exact name with file type extension located within folder: ")
-File = 'example.csv'
+File = input("Input exact name with file type extension located within folder: ")
 
 if type == "line":
     basic_line(File)
