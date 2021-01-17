@@ -18,19 +18,19 @@ Y=[]
 
 def basic_line(file):
     linesNum = int(input("How many lines?"))
-    var = {
-    }
+    var = {}
     for i in range(1, linesNum+1):
         var[i] = ([], [])
 
     with open(file, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
+        next(plots)
         for row in plots:
             for j in range(1, len(row)):
                 var[j][0].append(int(row[0]))
                 var[j][1].append(int(row[j]))
 
-
+    print(var)
     for k in range(linesNum):
         plt.plot(var[k+1][0], var[k+1][1])
 
@@ -45,11 +45,13 @@ def basic_line(file):
 def basic_bar(file):
     with open(file, 'r') as csvfile:
         Plotting = csv.reader(csvfile, delimiter=',')
+        next(Plotting)
         for row in Plotting:
             variables['x'].append(int(row[0]))
             variables['y'].append(int(row[1]))
 
     plt.bar(variables['x'], variables['y'], label='Bars1')
+    print(variables)
 
     plt.xlabel('X')
     plt.ylabel('y')
@@ -61,6 +63,7 @@ def basic_bar(file):
 def basic_scatter(file):
     with open(file, 'r') as csvfile:
         Plotting = csv.reader(csvfile, delimiter=',')
+        next(Plotting)
         for row in Plotting:
             variables['x'].append(int(row[0]))
             variables['y'].append(int(row[1]))
@@ -77,6 +80,7 @@ def geo(file):
     geoplotlib.dot(data, point_size=3)
     # geoplotlib.show()
     geoplotlib.savefig('img/map')
+
 
 def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
