@@ -24,6 +24,9 @@ bot = discord.ext.commands.Bot(command_prefix=prefix,
 
 @bot.command()
 async def graph(ctx, graph_type):
+    """
+    {graph_type} Renders a desired graph type from a csv dataset
+    """
     await ctx.send(f"Send a file to be a graphed. It must be a {', '.join(supported_file_types)}")
 
     def check(message):

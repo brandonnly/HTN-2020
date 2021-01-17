@@ -14,6 +14,11 @@ Y = []
 
 
 def basic_line(file):
+    """
+    Renders a basic line graph
+    :param file: path to file
+    :return: saves image to temp/Line.png
+    """
     lines_num = 2
     var = {}
     for i in range(1, lines_num+1):
@@ -41,6 +46,11 @@ def basic_line(file):
 
 
 def basic_bar(file):
+    """
+    Renders a basic bar graph
+    :param file: path to file
+    :return: saves image to temp/bar.png
+    """
     with open(file, 'r') as csvfile:
         plotting = csv.reader(csvfile, delimiter=',')
         next(plotting)
@@ -59,6 +69,11 @@ def basic_bar(file):
 
 
 def basic_scatter(file):
+    """
+    Renders a basic scatter graph
+    :param file: path to file
+    :return: saves image to temp/scatter.png
+    """
     with open(file, 'r') as csvfile:
         plotting = csv.reader(csvfile, delimiter=',')
         next(plotting)
@@ -75,6 +90,11 @@ def basic_scatter(file):
 
 
 def basic_pie(file):
+    """
+    Renders a basic pie graph
+    :param file: path to file
+    :return: saves image to temp/pie.png
+    """
     names = []
     values = []
     with open(file, 'r') as csvfile:
@@ -91,6 +111,11 @@ def basic_pie(file):
 
 
 def geo_dot(file):      # file must have at top: name,lat,lon
+    """
+    Renders a geo dot graph
+    :param file: path to file
+    :return: saves image to temp/map.png
+    """
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
     # geoplotlib.show()
@@ -98,6 +123,11 @@ def geo_dot(file):      # file must have at top: name,lat,lon
 
 
 def geo_spatial(file):
+    """
+    Renders a geo spatial graph
+    :param file: path to file
+    :return: saves image to temp/spatial.png
+    """
     data = read_csv(file)
     geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
