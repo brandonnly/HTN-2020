@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import numpy
 import pyglet
+
 import matplotlib.pyplot as plt
 import geoplotlib
 from geoplotlib.utils import read_csv
@@ -72,11 +73,19 @@ def basic_scatter(file):
     plt.show()
     # plt.savefig('scatter.png')
 
-def geo(file):
-    data = read_csv(file)
-    geoplotlib.dot(data, point_size=3)
-    # geoplotlib.show()
-    geoplotlib.savefig('img/map')
+
+def basic_pie(file):
+    df=pd.read_csv(file)
+    label_data = df[0]
+    value_data = df[1]
+    colors = ['m', 'b', 'k' , 'c', 'r']
+
+    plt.pie(value_data, labels=label_data, colors=colors, startangle=90)
+    plt.title(file)
+    plt.show()
+
+
+
 
 def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
@@ -89,16 +98,20 @@ def geo_spatial(file):
     data = read_csv(file)
     geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
-    geoplotlib.show()
-#     geoplotlib.savefig('img/spatial')
+    # geoplotlib.show()
+    geoplotlib.savefig('img/spatial')
 
 
-type = input("What type of graph, geo, line, scatter or bar? ")
+type = input("What type of graph, geo, pie, line, scatter or bar? ")
 
 File = input("Input exact name with file type extension located within folder: ")
 if ".xlsx" in File:
     read_file = pd.read_excel(File)
     File = read_file.to_csv('new.csv', index=None, header=True)
+
+# if ".json" in File:
+#     read_file = pd.read_json(File)
+
 
 if type == "line":
     basic_line(File)
@@ -118,7 +131,9 @@ if type == "geo":
         geo_spatial(File)
     # Make sure to auto delete the image after the command in bot.py
 
-if type == "geo":
-    geo(File)
+    if geotype=="pie":
+        basic_pie(File)
+
+
 
     # Make sure to auto delete the image after the command in bot.py
