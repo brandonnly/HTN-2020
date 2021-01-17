@@ -1,8 +1,8 @@
 import asyncio
-import os
 import time
-
 import discord
+import pandas
+import json
 from discord.ext import commands
 from HackTheJoon.Func import *
 from dropbase import *
@@ -41,16 +41,25 @@ async def graph(ctx, graph_type):
         await ctx.send(f"That's not a valid file type. It must be a {', '.join(supported_file_types)}")
     else:
         # saves with filename
-        await msg.attachments[0].save("file.csv")
+        await msg.attachments[0].save("temp/file.csv")
 
-    if graph_type.lower() == '2y-bar':
+    if graph_type.lower() == 'yy-bar':
         job = Job('X VS YY TABLE')
         job.run_pipeline()
         for x in range(5):
-            response = job.get_job_status()
             time.sleep(1)
+            response = job.get_job_status()
 
-    print(database_query('x_vs_yy', 'x,y1,y2'))
+    # saves query as temp json
+    with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+        json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile, ensure_ascii=False, indent=4)
+    # converts json to csv
+    file = pandas.read_json('temp/file.json')
+    file.to_csv('temp/new_file.csv')
+
+    # graphs the csv data
+    basic_bar('temp/file.csv')
+    await ctx.send(file=discord.File(open('temp/bar.png', 'rb'), 'bar.png'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))
