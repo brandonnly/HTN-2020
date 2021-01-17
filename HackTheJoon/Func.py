@@ -58,8 +58,8 @@ def basic_bar(file):
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    plt.show()
-    # plt.savefig('bar.png')
+    # plt.show()
+    plt.savefig('temp/bar.png')
 
 
 def basic_scatter(file):
@@ -106,7 +106,7 @@ def geo_spatial(file):
     # geoplotlib.show()
     geoplotlib.savefig('img/spatial')
 
-
+"""
 type = input("What type of graph, geo, pie, line, scatter or bar? ")
 
 File = input("Input exact name with file type extension located within folder: ")
@@ -140,5 +140,5 @@ if type == "geo":
         basic_pie(File)
 
 
-
+"""
     # Make sure to auto delete the image after the command in bot.py
