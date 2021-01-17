@@ -1,11 +1,9 @@
 import asyncio
-import os
 import time
 
 import discord
 from discord.ext import commands
-from HackTheJoon.Func import *
-from dropbase import *
+from Utils.dropbase import *
 from settings import *
 
 # discord gateway intents
