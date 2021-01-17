@@ -53,7 +53,7 @@ async def graph(ctx, graph_type):
             with open('temp/file.json', 'w', encoding='utf-8') as outfile:
                 json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile,
                           ensure_ascii=False, indent=4)
-        else:
+        elif graph_type.lower()[0:2] == 'y-':
             job = Job('NAME VS COUNT TABLE')
             job.run_pipeline()
             time.sleep(5)
@@ -61,6 +61,16 @@ async def graph(ctx, graph_type):
             # saves query as temp json
             with open('temp/file.json', 'w', encoding='utf-8') as outfile:
                 json.dump(database_query('name_vs_count', 'name,count'),
+                          outfile, ensure_ascii=False, indent=4)
+
+        elif graph_type.lower() == 'geodot':
+            job = Job('GEODOT TABLE')
+            job.run_pipeline()
+            time.sleep(5)
+
+            # saves query as temp json
+            with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+                json.dump(database_query('geodot', 'name,lat,lon'),
                           outfile, ensure_ascii=False, indent=4)
 
         # converts json to csv
@@ -72,21 +82,26 @@ async def graph(ctx, graph_type):
         basic_bar('temp/new_file.csv')
         await ctx.send(file=discord.File(open('temp/bar.png', 'rb'), 'bar.png'))
 
-    if graph_type.lower() == 'yy-line':
+    elif graph_type.lower() == 'yy-line':
         # graphs the csv data
         basic_line('temp/new_file.csv')
         await ctx.send(file=discord.File(open('temp/Line.png', 'rb'), 'Line.png'))
 
-    if graph_type.lower() == 'yy-scatter':
+    elif graph_type.lower() == 'yy-scatter':
         # graphs the csv data
         basic_scatter('temp/new_file.csv')
         await ctx.send(
             file=discord.File(open('temp/scatter.png', 'rb'), 'scatter.png'))
 
-    if graph_type.lower() == 'y-pie':
+    elif graph_type.lower() == 'y-pie':
         basic_pie('temp/new_file.csv')
         await ctx.send(
             file=discord.File(open('temp/pie.png', 'rb'), 'pie.png'))
+
+    elif graph_type.lower() == 'geodot':
+        geo_dot('temp/new_file.csv')
+        await ctx.send(
+            file=discord.File(open('temp/map.png', 'rb'), 'map.png'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))

@@ -100,7 +100,7 @@ def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
     #geoplotlib.show()
-    geoplotlib.savefig('temp/map.png')
+    geoplotlib.savefig('temp/map')
 
 
 def geo_spatial(file):
@@ -108,4 +108,4 @@ def geo_spatial(file):
     geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
     #geoplotlib.show()
-    geoplotlib.savefig('temp/spatial.png')
+    geoplotlib.savefig('temp/spatial')
