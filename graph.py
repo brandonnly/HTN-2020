@@ -104,7 +104,7 @@ def basic_pie(file):
     colors = ['m', 'b', 'k', 'c', 'r']
 
     plt.pie(values, labels=names, colors=colors, startangle=90)
-    plt.title(file.split('.')[0] + 'Pie Chart')
+    plt.title('Pie Chart')
     plt.savefig('temp/pie.png')
 
 

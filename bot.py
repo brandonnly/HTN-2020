@@ -79,7 +79,7 @@ async def graph(ctx, graph_type):
         elif graph_type.lower() == 'geospatial':
             job = Job('GEOSPATIAL TABLE')
             job.run_pipeline()
-            time.sleep(5)
+            time.sleep(10)
 
             # saves query as temp json
             with open('temp/file.json', 'w', encoding='utf-8') as outfile:
