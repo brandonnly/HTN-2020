@@ -1,31 +1,38 @@
 # DisGraph (HTN 2020++ Submission)
 
+<p align="center">
+<img src="img/logo2.png" alt="Example image with Geo Spatial Graph" height=300>
+</p>
+
+# Table of Contents
 - [DisGraph (HTN 2020++ Submission)](#disgraph-htn-2020-submission)
-  - [About the Project](#about-the-project)
+- [Table of Contents](#table-of-contents)
+- [About the Project](#about-the-project)
   - [Getting Started](#getting-started)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-  - [Usage](#usage)
-      - [Graph Types](#graph-types)
-  - [License](#license)
-  - [HTN 2020++ Group](#htn-2020-group)
-## About the Project
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+- [Usage](#usage)
+    - [Graph Types](#graph-types)
+- [License](#license)
+- [HTN 2020++ Group](#htn-2020-group)
+# About the Project
 Wanting to explore a unique way to share CSV/Excel data through the 
 [Dropbase](https://dropbase.io) API, we thought about the platform through 
 which we were all communicating on. Discord. So we decided to create `DisGraph`
 , a Discord bot that can read in your data from a `.csv` and return a graph.
 
-<img align="center" src="img/example.png" alt="Example image with Geo Spatial Graph">
-
+<p align="center">
+<img src="img/example.png" alt="Example image with Geo Spatial Graph">
+</p>
 ## Getting Started
 At the moment the bot doesn't have a public link as it isn't hosted 24/7. But,
 if you'd like to host the bot yourself you can ():
 
-### Requirements
+## Requirements
 
 - Python 3.8 or greater
 
-### Installation
+## Installation
 
 1. Clone the repo
    `git clone https://github.com/brandonnly/HTN-2020.git`
@@ -48,13 +55,13 @@ if you'd like to host the bot yourself you can ():
    - `GEODOT TABLE`
    - `GEOSPATIAL TABLE`
 
-## Usage
+# Usage
 There are a few options for graphs with one command. The CSV's must follow an
 exact format as seen in `example_data`
 
 The command is `d!graph {graph_type}`
 
-#### Graph Types
+### Graph Types
 - yy-bar
   - CSV must have columns `x`, `y1`, `y2`
 - yy-line
@@ -68,9 +75,12 @@ The command is `d!graph {graph_type}`
 - geospatial
   - CSV must have columns `lon_departure`, `lat_departure`, `lon_arrival`, `lat_arrival`
 
-## License
+# License
+
 This project is released under the MIT license, see `LICENSE` for more info.
-## HTN 2020++ Group
+
+# HTN 2020++ Group
+
 Brandon Ly - [branonly.me](https://brandonly.me)
 
 Jerome Philip - [LinkedIn](https://www.linkedin.com/in/jerome-philip/) - [jeromephilip.com/](http://jeromephilip.com/)
