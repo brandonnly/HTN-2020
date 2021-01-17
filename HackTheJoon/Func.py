@@ -13,28 +13,30 @@ X=[]
 Y=[]
 
 def basic_line(file):
-    linesNum = int(input("How many lines?"))
-    x = []
-    y = {
-
+    # linesNum = int(input("How many lines?"))
+    linesNum = 2
+    var = {
     }
-    for num in range(linesNum):
-        y[num+1] = []
-    for i in range(linesNum):
-        with open(file, 'r') as csvfile:
-            Plotting = csv.reader(csvfile, delimiter=',')
-            for row in Plotting:
-                x.append(row[0])
-                for j in range(1, len(row)):
-                    y[j].append(row[j])
+    for i in range(1, linesNum+1):
+        var[i] = ([], [])
+
+    with open(file, 'r') as csvfile:
+        plots = csv.reader(csvfile, delimiter=',')
+        for row in plots:
+            for j in range(1, len(row)):
+                var[j][0].append(int(row[0]))
+                var[j][1].append(int(row[j]))
+
+
     for k in range(linesNum):
-        # uses from object
-        plt.plot(x, y[k+1])
+        plt.plot(var[k+1][0], var[k+1][1])
+
 
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
     plt.show()
+
 
 def basic_bar(file):
     with open(file, 'r') as csvfile:
@@ -49,7 +51,6 @@ def basic_bar(file):
     plt.ylabel('y')
     plt.legend()
     plt.show()
-    # plt.savefig('BarGraph.png')
 
 
 def basic_scatter(file):
@@ -75,7 +76,8 @@ def basic_scatter(file):
 
 type = input("What type of graph, line, scatter or bar? ")
 
-File = input("Input exact name with file type extension located within folder: ")
+# File = input("Input exact name with file type extension located within folder: ")
+File = 'example.csv'
 
 if type == "line":
     basic_line(File)
