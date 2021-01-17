@@ -66,5 +66,11 @@ async def graph(ctx, graph_type):
         basic_line('temp/new_file.csv')
         await ctx.send(file=discord.File(open('temp/Line.png', 'rb'), 'Line.png'))
 
+    if graph_type.lower() == 'yy-scatter':
+        # graphs the csv data
+        basic_scatter('temp/new_file.csv')
+        await ctx.send(
+            file=discord.File(open('temp/scatter.png', 'rb'), 'scatter.png'))
+
 
 bot.run(os.getenv('BOT_TOKEN'))

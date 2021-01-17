@@ -75,8 +75,8 @@ def basic_scatter(file):
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    plt.show()
-    # plt.savefig('scatter.png')
+    #plt.show()
+    plt.savefig('temp/scatter.png')
 
 
 def basic_pie(file):
