@@ -34,7 +34,6 @@ def basic_line(file):
                 var[j][0].append(int(row[0]))
                 var[j][1].append(int(row[j]))
 
-    print(var)
     for k in range(lines_num):
         plt.plot(var[k+1][0], var[k+1][1])
 
@@ -59,7 +58,6 @@ def basic_bar(file):
             variables['y'].append(int(row[1]))
 
     plt.bar(variables['x'], variables['y'], label='Bars1')
-    print(variables)
 
     plt.xlabel('X')
     plt.ylabel('y')
