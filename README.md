@@ -8,7 +8,7 @@
 - [DisGraph (HTN 2020++ Submission)](#disgraph-htn-2020-submission)
 - [Table of Contents](#table-of-contents)
 - [About the Project](#about-the-project)
-  - [Getting Started](#getting-started)
+- [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Installation](#installation)
 - [Usage](#usage)
@@ -24,9 +24,10 @@ which we were all communicating on. Discord. So we decided to create `DisGraph`
 <p align="center">
 <img src="img/example.png" alt="Example image with Geo Spatial Graph">
 </p>
-## Getting Started
+
+# Getting Started
 At the moment the bot doesn't have a public link as it isn't hosted 24/7. But,
-if you'd like to host the bot yourself you can ():
+if you'd like to host the bot yourself you can.
 
 ## Requirements
 
