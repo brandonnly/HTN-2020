@@ -50,16 +50,16 @@ async def graph(ctx, graph_type):
             time.sleep(1)
             response = job.get_job_status()
 
-    # saves query as temp json
-    with open('temp/file.json', 'w', encoding='utf-8') as outfile:
-        json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile, ensure_ascii=False, indent=4)
-    # converts json to csv
-    file = pandas.read_json('temp/file.json')
-    file.to_csv('temp/new_file.csv')
+        # saves query as temp json
+        with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+            json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile, ensure_ascii=False, indent=4)
+        # converts json to csv
+        file = pandas.read_json('temp/file.json')
+        file.to_csv('temp/new_file.csv', index=False)
 
-    # graphs the csv data
-    basic_bar('temp/file.csv')
-    await ctx.send(file=discord.File(open('temp/bar.png', 'rb'), 'bar.png'))
+        # graphs the csv data
+        basic_bar('temp/new_file.csv')
+        await ctx.send(file=discord.File(open('temp/bar.png', 'rb'), 'bar.png'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))
