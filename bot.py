@@ -1,11 +1,9 @@
 import asyncio
-import os
 import time
-
 import discord
+import pandas
 from discord.ext import commands
-from HackTheJoon.Func import *
-from dropbase import *
+from Utils.dropbase import *
 from settings import *
 
 # discord gateway intents
@@ -50,7 +48,7 @@ async def graph(ctx, graph_type):
             response = job.get_job_status()
             time.sleep(1)
 
-    print(database_query('x_vs_yy', 'x,y1,y2'))
+
 
 
 bot.run(os.getenv('BOT_TOKEN'))

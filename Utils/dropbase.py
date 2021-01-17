@@ -35,7 +35,7 @@ class Job:
         headers = {
             'Content-Type': 'text/plain',
         }
-        data = open('file.csv', 'rb')
+        data = open('../file.csv', 'rb')
         response = requests.put(self.upload_url, data=data)
         print(response)
 
