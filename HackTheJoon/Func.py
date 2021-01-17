@@ -17,8 +17,9 @@ variables = {
 X=[]
 Y=[]
 
+
 def basic_line(file):
-    linesNum = 0
+    linesNum = 2
     var = {}
     for i in range(1, linesNum+1):
         var[i] = ([], [])
@@ -26,7 +27,7 @@ def basic_line(file):
     with open(file, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
         # Skip first line (values)
-        linesNum = len(next(plots))
+        linesNum = len(next(plots)) - 1
         next(plots)
         for row in plots:
             for j in range(1, len(row)):
@@ -37,12 +38,11 @@ def basic_line(file):
     for k in range(linesNum):
         plt.plot(var[k+1][0], var[k+1][1])
 
-
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    plt.show()
-    # plt.savefig('Line.png')
+    #plt.show()
+    plt.savefig('temp/Line.png')
 
 
 def basic_bar(file):

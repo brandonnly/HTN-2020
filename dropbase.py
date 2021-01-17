@@ -14,18 +14,12 @@ class Job:
         :return:
         """
         data = {"token": os.getenv(f"{table_key}")}
-        print(data)
-        processing = requests.post(
+        request = requests.post(
             "https://api2.dropbase.io/v1/pipeline/generate_presigned_url",
             data=data)
 
-        return_data = processing.json()
-
-        print(f"Got Presigned URL | URL: {return_data['upload_url']} - "
-              f"Job ID: {return_data['job_id']}")
-
-        self.upload_url = return_data["upload_url"]
-        self.job_id = return_data["job_id"]
+        self.upload_url = request.json()["upload_url"]
+        self.job_id = request.json()["job_id"]
 
     def run_pipeline(self):
         """
@@ -37,7 +31,6 @@ class Job:
         }
         data = open('temp/file.csv', 'rb')
         response = requests.put(self.upload_url, data=data)
-        print(response)
 
     def get_job_status(self):
         """
@@ -45,8 +38,6 @@ class Job:
         :return: json object of the job status
         """
         response = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": self.job_id})
-        print(response)
-        print(response.json())
         return response
 
 
