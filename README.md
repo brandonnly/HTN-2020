@@ -20,3 +20,9 @@ Double bar graph: yy-bar
 Double line graph: yy-line
 
 Double scatter chart: yy-scatter
+
+Pie chart: y-pie
+
+Spacial graph: geospacial
+
+Geo dot graph: geodot
