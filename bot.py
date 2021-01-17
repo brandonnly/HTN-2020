@@ -50,7 +50,7 @@ async def graph(ctx, graph_type):
             response = job.get_job_status()
             time.sleep(1)
 
-    print(database_query('x_vs_yy'))
+    print(database_query('x_vs_yy', 'x,y1,y2'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))

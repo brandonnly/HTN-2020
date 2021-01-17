@@ -50,12 +50,13 @@ class Job:
         return response
 
 
-def database_query(table: str):
+def database_query(table: str, columns):
     """
     Queries the database table
     :param table: name of the table to query
+    :param columns: columns to query in the format
     :return: json of the query
     """
     header = {"Authorization": os.getenv("DROPBASE_ACCESS_KEY")}
-    response = requests.get(f'https://query.dropbase.io/5FdDQsCcujbAfvf3hWieyu/{table}', headers=header)
+    response = requests.get(f'https://query.dropbase.io/5FdDQsCcujbAfvf3hWieyu/{table}?select={columns}', headers=header)
     return response.json()
