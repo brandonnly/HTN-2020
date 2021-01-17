@@ -1,5 +1,7 @@
 import asyncio
 import os
+import time
+
 import discord
 from discord.ext import commands
 from HackTheJoon.Func import *
@@ -21,7 +23,7 @@ bot = discord.ext.commands.Bot(command_prefix=prefix,
 
 
 @bot.command()
-async def graph(ctx):
+async def graph(ctx, graph_type):
     await ctx.send(f"Send a file to be a graphed. It must be a {', '.join(supported_file_types)}")
 
     def check(message):
@@ -41,7 +43,14 @@ async def graph(ctx):
         # saves with filename
         await msg.attachments[0].save("file.csv")
 
+    if graph_type.lower() == '2y-bar':
+        job = Job('X VS YY TABLE')
+        job.run_pipeline()
+        for x in range(5):
+            response = job.get_job_status()
+            time.sleep(1)
 
+    print(database_query('x_vs_yy'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))
