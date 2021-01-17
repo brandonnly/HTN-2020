@@ -35,7 +35,7 @@ class Job:
         headers = {
             'Content-Type': 'text/plain',
         }
-        data = open('devices.json', 'rb')
+        data = open('file.csv', 'rb')
         response = requests.put(self.upload_url, data=data)
         print(response)
         print("response sent!")
@@ -47,10 +47,16 @@ class Job:
         """
         response = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": self.job_id})
         print(f"\nStatus Code: {response}\nMessage: {response.json()}")
+        return response.json()
 
 
-test = Job()
-test.run_pipeline()
-while True:
-    time.sleep(3)
-    test.get_job_status()
+def database_query(table: str):
+    """
+    Queries the database table
+    :param table: name of the table to query
+    :return: json of the query
+    """
+    header = {"Authorization": os.getenv("DROPBASE_ACCESS_KEY")}
+    response = requests.get(f'https://query.dropbase.io/5FdDQsCcujbAfvf3hWieyu/{table}', headers=header)
+    return response.json()
+

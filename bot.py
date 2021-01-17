@@ -2,8 +2,8 @@ import asyncio
 import os
 import discord
 from discord.ext import commands
+from HackTheJoon.Func import *
 from dropbase import *
-
 from settings import *
 
 # discord gateway intents
@@ -40,6 +40,8 @@ async def graph(ctx):
     else:
         # saves with filename
         await msg.attachments[0].save("file.csv")
+
+
 
 
 bot.run(os.getenv('BOT_TOKEN'))
