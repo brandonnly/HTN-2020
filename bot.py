@@ -4,7 +4,7 @@ import discord
 import pandas
 import json
 from discord.ext import commands
-from HackTheJoon.Func import *
+from graph import *
 from dropbase import *
 from settings import *
 

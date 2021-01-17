@@ -1,9 +1,4 @@
 import csv
-import pandas as pd
-import os
-import numpy
-import pyglet
-
 import matplotlib.pyplot as plt
 import geoplotlib
 from geoplotlib.utils import read_csv
@@ -14,20 +9,20 @@ variables = {
     'y': []
 }
 
-X=[]
-Y=[]
+X = []
+Y = []
 
 
 def basic_line(file):
-    linesNum = 2
+    lines_num = 2
     var = {}
-    for i in range(1, linesNum+1):
+    for i in range(1, lines_num+1):
         var[i] = ([], [])
 
     with open(file, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
         # Skip first line (values)
-        linesNum = len(next(plots)) - 1
+        lines_num = len(next(plots)) - 1
         next(plots)
         for row in plots:
             for j in range(1, len(row)):
@@ -35,21 +30,21 @@ def basic_line(file):
                 var[j][1].append(int(row[j]))
 
     print(var)
-    for k in range(linesNum):
+    for k in range(lines_num):
         plt.plot(var[k+1][0], var[k+1][1])
 
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    #plt.show()
+    # plt.show()
     plt.savefig('temp/Line.png')
 
 
 def basic_bar(file):
     with open(file, 'r') as csvfile:
-        Plotting = csv.reader(csvfile, delimiter=',')
-        next(Plotting)
-        for row in Plotting:
+        plotting = csv.reader(csvfile, delimiter=',')
+        next(plotting)
+        for row in plotting:
             variables['x'].append(int(row[0]))
             variables['y'].append(int(row[1]))
 
@@ -65,9 +60,9 @@ def basic_bar(file):
 
 def basic_scatter(file):
     with open(file, 'r') as csvfile:
-        Plotting = csv.reader(csvfile, delimiter=',')
-        next(Plotting)
-        for row in Plotting:
+        plotting = csv.reader(csvfile, delimiter=',')
+        next(plotting)
+        for row in plotting:
             variables['x'].append(int(row[0]))
             variables['y'].append(int(row[1]))
     plt.scatter(variables['x'], variables['y'], label='Scatter', color='b')
@@ -75,7 +70,7 @@ def basic_scatter(file):
     plt.xlabel('X')
     plt.ylabel('y')
     plt.legend()
-    #plt.show()
+    # plt.show()
     plt.savefig('temp/scatter.png')
 
 
@@ -98,7 +93,7 @@ def basic_pie(file):
 def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
-    #geoplotlib.show()
+    # geoplotlib.show()
     geoplotlib.savefig('temp/map')
 
 
@@ -106,5 +101,5 @@ def geo_spatial(file):
     data = read_csv(file)
     geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
-    #geoplotlib.show()
+    # geoplotlib.show()
     geoplotlib.savefig('temp/spatial')
