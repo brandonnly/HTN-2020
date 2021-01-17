@@ -18,24 +18,23 @@ X=[]
 Y=[]
 
 def basic_line(file):
-    linesNum = int(input("How many lines?"))
+    linesNum = 0
+    g = 0
     var = {}
     for i in range(1, linesNum+1):
         var[i] = ([], [])
-
     with open(file, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
         # Skip first line (values)
+        linesNum = len(next(plots))-1
         next(plots)
         for row in plots:
             for j in range(1, len(row)):
                 var[j][0].append(int(row[0]))
                 var[j][1].append(int(row[j]))
 
-    print(var)
     for k in range(linesNum):
         plt.plot(var[k+1][0], var[k+1][1])
-
 
     plt.xlabel('X')
     plt.ylabel('y')
@@ -88,10 +87,6 @@ def basic_pie(file):
     plt.title(file)
     plt.show()
 
-
-
-
-
 def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
@@ -105,7 +100,6 @@ def geo_spatial(file):
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
     # geoplotlib.show()
     geoplotlib.savefig('img/spatial')
-
 
 type = input("What type of graph, geo, pie, line, scatter or bar? ")
 
