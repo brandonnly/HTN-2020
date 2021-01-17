@@ -1,7 +1,11 @@
 import csv
-import json
-import numpy as np
+import pandas as pd
+import os
+import numpy
+import pyglet
 import matplotlib.pyplot as plt
+import geoplotlib
+from geoplotlib.utils import read_csv
 
 
 variables = {
@@ -35,6 +39,7 @@ def basic_line(file):
     plt.ylabel('y')
     plt.legend()
     plt.show()
+    # plt.savefig('Line.png')
 
 
 def basic_bar(file):
@@ -50,6 +55,7 @@ def basic_bar(file):
     plt.ylabel('y')
     plt.legend()
     plt.show()
+    # plt.savefig('bar.png')
 
 
 def basic_scatter(file):
@@ -64,12 +70,27 @@ def basic_scatter(file):
     plt.ylabel('y')
     plt.legend()
     plt.show()
+    # plt.savefig('scatter.png')
+
+def geo(file):
+    data = read_csv(file)
+    geoplotlib.dot(data, point_size=3)
+    # geoplotlib.show()
+    geoplotlib.savefig('img/map')
+
+def geo(file):      # file must have at top: name,lat,lon
+    data = read_csv(file)
+    geoplotlib.dot(data, point_size=3)
+    # geoplotlib.show()
+    geoplotlib.savefig('img/map')
 
 
-
-type = input("What type of graph, line, scatter or bar? ")
+type = input("What type of graph, geo, line, scatter or bar? ")
 
 File = input("Input exact name with file type extension located within folder: ")
+if ".xlsx" in File:
+    read_file = pd.read_excel(File)
+    File = read_file.to_csv('new.csv', index=None, header=True)
 
 if type == "line":
     basic_line(File)
@@ -79,3 +100,13 @@ if type == "scatter":
 
 if type == "bar":
     basic_bar(File)
+
+if type == "geo":
+    geo(File)
+
+    # Make sure to auto delete the image after the command in bot.py
+
+if type == "geo":
+    geo(File)
+
+    # Make sure to auto delete the image after the command in bot.py
