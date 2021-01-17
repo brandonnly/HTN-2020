@@ -80,63 +80,32 @@ def basic_scatter(file):
 
 
 def basic_pie(file):
-    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-    vals = {}
-    arr = []
+    names = []
+    values = []
     with open(file, 'r') as csvfile:
-        Plotting = csv.reader(csvfile, delimiter=',')
-        firstLine = next(Plotting)
-        arr = firstLine
-        vals[firstLine[0]] = []
-        vals[firstLine[1]] = []
-        for row in Plotting:
-            vals[firstLine[0]].append((row[0]))
-            vals[firstLine[1]].append((row[1]))
-    colors = ['m', 'b', 'k' , 'c', 'r']
-    print(vals[arr[0]])
-    plt.pie(vals[arr[1]], labels=vals[arr[0]], colors=colors, startangle=90)
-    plt.title(file.split('.')[0])
-    plt.show()
+        plotting = csv.reader(csvfile, delimiter=',')
+        next(plotting)
+        for row in plotting:
+            names.append(row[0])
+            values.append(row[1])
+    colors = ['m', 'b', 'k', 'c', 'r']
+
+    plt.pie(values, labels=names, colors=colors, startangle=90)
+    plt.title('Pie Chart')
+    #plt.show()
+    plt.savefig('temp/pie.png')
 
 
 def geo_dot(file):      # file must have at top: name,lat,lon
     data = read_csv(file)
     geoplotlib.dot(data, point_size=3)
-    # geoplotlib.show()
-    geoplotlib.savefig('img/map')
+    #geoplotlib.show()
+    geoplotlib.savefig('temp/map.png')
 
 
 def geo_spatial(file):
     data = read_csv(file)
     geoplotlib.graph(data, src_lat='lat_departure', src_lon='lon_departure', dest_lat='lat_arrival',
                      dest_lon='lon_arrival', color='hot_r', alpha=16, linewidth=2)
-    # geoplotlib.show()
-    geoplotlib.savefig('img/spatial')
-
-"""
-type = input("What type of graph, geo, pie, line, scatter or bar? ")
-File = input("Input exact name with file type extension located within folder: ")
-if ".xlsx" in File:
-    read_file = pd.read_excel(File)
-    File = read_file.to_csv('new.csv', index=None, header=True)
-# if ".json" in File:
-#     read_file = pd.read_json(File)
-if type == "line":
-    basic_line(File)
-if type == "scatter":
-    basic_scatter(File)
-if type == "bar":
-    basic_bar(File)
-if type == "geo":
-    geotype = input("What type? Dot Density? Spatial?")
-    if geotype=="dot":
-        geo_dot(File)
-    if geotype=="spatial":
-        geo_spatial(File)
-    # Make sure to auto delete the image after the command in bot.py
-    if geotype=="pie":
-        basic_pie(File)
-
-"""
-
-basic_pie('Gold.csv')
+    #geoplotlib.show()
+    geoplotlib.savefig('temp/spatial.png')

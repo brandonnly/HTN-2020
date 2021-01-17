@@ -44,14 +44,25 @@ async def graph(ctx, graph_type):
         await msg.attachments[0].save("temp/file.csv")
 
         # run the pipeline job
-        job = Job('X VS YY TABLE')
-        job.run_pipeline()
-        time.sleep(5)
+        if graph_type.lower()[0:2] == 'yy':
+            job = Job('X VS YY TABLE')
+            job.run_pipeline()
+            time.sleep(5)
 
-        # saves query as temp json
-        with open('temp/file.json', 'w', encoding='utf-8') as outfile:
-            json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile,
-                      ensure_ascii=False, indent=4)
+            # saves query as temp json
+            with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+                json.dump(database_query('x_vs_yy', 'x,y1,y2'), outfile,
+                          ensure_ascii=False, indent=4)
+        else:
+            job = Job('NAME VS COUNT TABLE')
+            job.run_pipeline()
+            time.sleep(5)
+
+            # saves query as temp json
+            with open('temp/file.json', 'w', encoding='utf-8') as outfile:
+                json.dump(database_query('name_vs_count', 'name,count'),
+                          outfile, ensure_ascii=False, indent=4)
+
         # converts json to csv
         file = pandas.read_json('temp/file.json')
         file.to_csv('temp/new_file.csv', index=False)
@@ -71,6 +82,11 @@ async def graph(ctx, graph_type):
         basic_scatter('temp/new_file.csv')
         await ctx.send(
             file=discord.File(open('temp/scatter.png', 'rb'), 'scatter.png'))
+
+    if graph_type.lower() == 'y-pie':
+        basic_pie('temp/new_file.csv')
+        await ctx.send(
+            file=discord.File(open('temp/pie.png', 'rb'), 'pie.png'))
 
 
 bot.run(os.getenv('BOT_TOKEN'))
